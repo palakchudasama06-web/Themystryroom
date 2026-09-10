@@ -1,33 +1,136 @@
-* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; font-family: 'Courier New', Courier, monospace; }
-body { background: #000; overflow: hidden; color: #fff; margin: 0; }
+/* Import cinematic and techy fonts */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Jura:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+
+body { 
+    background: #000; overflow: hidden; color: #fff; margin: 0; 
+    font-family: 'Jura', sans-serif; 
+}
+
 #game-container { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; }
-.ui-layer { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(3px); }
+
+/* --------------------------------------
+   MENUS AND OVERLAYS
+--------------------------------------- */
+.ui-layer { 
+    position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    background: radial-gradient(circle, rgba(15, 25, 30, 0.75) 0%, rgba(0, 0, 0, 0.95) 100%); 
+    backdrop-filter: blur(8px); 
+}
 .hidden { display: none !important; }
-#crosshair { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; background: rgba(255,255,255,0.7); border-radius: 50%; transform: translate(-50%, -50%); z-index: 5; pointer-events: none; }
 
-h1 { font-size: 3rem; margin-bottom: 10px; color: #a3c2c2; text-shadow: 0 0 10px #a3c2c2; letter-spacing: 2px; text-align: center; }
-h2 { font-size: 2rem; margin-bottom: 20px; color: #e0e0e0; border-bottom: 1px solid #555; padding-bottom: 10px; }
-p { font-size: 1.2rem; margin-bottom: 30px; text-align: center; max-width: 600px; line-height: 1.5; color: #ccc; }
+/* Glowing Crosshair */
+#crosshair { 
+    position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; 
+    background: rgba(255, 255, 255, 0.9); border-radius: 50%; 
+    transform: translate(-50%, -50%); z-index: 5; pointer-events: none;
+    box-shadow: 0 0 10px rgba(163, 194, 194, 0.8);
+}
 
-button { padding: 15px 30px; font-size: 1.2rem; background: #222; color: #fff; border: 1px solid #555; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
-button:hover { background: #444; border-color: #a3c2c2; box-shadow: 0 0 15px rgba(163, 194, 194, 0.5); }
+/* Typography */
+h1 { 
+    font-size: 4rem; margin-bottom: 10px; color: #c4d4e6; 
+    text-shadow: 0 0 15px rgba(196, 212, 230, 0.4); letter-spacing: 6px; 
+    text-transform: uppercase; font-family: 'Share Tech Mono', monospace; 
+}
+h2 { 
+    font-size: 2.2rem; margin-bottom: 20px; color: #fff; 
+    border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 10px; 
+    font-weight: 700; letter-spacing: 2px; 
+}
+p { 
+    font-size: 1.2rem; margin-bottom: 30px; text-align: center; 
+    max-width: 600px; line-height: 1.6; color: #9ab4c2; 
+}
 
-#hud { background: transparent; justify-content: space-between; align-items: flex-start; padding: 20px; pointer-events: none; }
-#level-display, #evidence-counter { font-size: 1.5rem; text-shadow: 1px 1px 2px #000; background: rgba(0,0,0,0.5); padding: 5px 15px; border: 1px solid #333; }
-#evidence-counter { position: absolute; top: 20px; right: 20px; }
-#interaction-prompt { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); font-size: 1.5rem; background: rgba(0,0,0,0.7); padding: 10px 20px; border: 1px solid #fff; }
+/* Sleek Buttons */
+button { 
+    padding: 15px 40px; font-size: 1.2rem; background: rgba(20, 30, 40, 0.8); color: #fff; 
+    border: 1px solid rgba(100, 150, 200, 0.3); border-radius: 4px; cursor: pointer; 
+    transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; 
+    font-family: 'Share Tech Mono', monospace;
+}
+button:hover { 
+    background: rgba(40, 60, 80, 0.9); border-color: #6495ED; 
+    box-shadow: 0 0 20px rgba(100, 149, 237, 0.4); transform: scale(1.05); 
+}
 
-#inspection-panel, #scroll-panel { background: rgba(10, 15, 20, 0.95); }
-#inspect-content, #scroll-content { background: #fff; color: #111; padding: 30px; border-radius: 2px; width: 80%; max-width: 500px; min-height: 300px; font-family: 'Times New Roman', serif; box-shadow: inset 0 0 50px rgba(0,0,0,0.1); }
-#scroll-content { background: #f4e8c1; color: #3d2b1f; font-style: italic; border: 2px solid #a8946e; }
+/* --------------------------------------
+   HUD (FIXING THE "EWWW" PART)
+--------------------------------------- */
+#hud { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: transparent; pointer-events: none; z-index: 5; 
+}
+#level-display, #evidence-counter { 
+    position: absolute; top: 30px; 
+    background: rgba(15, 20, 25, 0.7); 
+    padding: 12px 25px; 
+    border-radius: 6px; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #e0e6ed; font-size: 1.2rem; font-weight: 700; letter-spacing: 1.5px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+/* Subtle accent colors for the HUD boxes */
+#level-display { left: 30px; border-left: 4px solid #4682B4; }
+#evidence-counter { right: 30px; border-right: 4px solid #4682B4; }
 
-.hint-section { margin-top: 20px; text-align: center; }
-#hint-text { color: #a3c2c2; font-size: 1rem; margin-top: 10px; }
+#interaction-prompt { 
+    position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); 
+    font-size: 1.2rem; background: rgba(0, 0, 0, 0.85); padding: 12px 35px; 
+    border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.15); 
+    color: #fff; letter-spacing: 2px; box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    animation: pulse 2s infinite;
+}
 
-#keypad-panel { background: rgba(0,0,0,0.85); }
-#keypad-display { font-size: 3rem; background: #111; color: #0f0; border: 2px solid #333; padding: 10px 20px; margin-bottom: 20px; width: 320px; text-align: center; font-family: monospace; text-shadow: 0 0 10px #0f0; }
-.keypad-grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; margin-bottom: 30px; }
-.kp-btn { height: 80px; font-size: 2rem; background: #333; border-radius: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
-.kp-btn:hover { background: #555; }
-.kp-clear { background: #522; color: #f55; }
-.kp-enter { background: #252; color: #5f5; }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* --------------------------------------
+   EVIDENCE & SCROLL PANELS
+--------------------------------------- */
+#inspection-panel, #scroll-panel { background: rgba(5, 10, 12, 0.95); }
+#inspect-content, #scroll-content { 
+    background: #fdfbf7; color: #2c3e50; padding: 40px; border-radius: 4px; 
+    width: 85%; max-width: 600px; min-height: 300px; 
+    font-family: 'Times New Roman', serif; font-size: 1.2rem; line-height: 1.6;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 10px 40px rgba(0,0,0,0.9); 
+}
+#scroll-content { 
+    background: #e8dcc4; color: #3d2b1f; font-style: italic; 
+    border: 1px solid #c2b292; font-size: 1.4rem;
+}
+.hint-section { margin-top: 25px; text-align: center; }
+#hint-text { color: #a3c2c2; font-size: 1.1rem; margin-top: 15px; font-weight: 700; }
+
+/* --------------------------------------
+   THE KEYPAD
+--------------------------------------- */
+#keypad-panel { background: rgba(5, 5, 5, 0.95); }
+#keypad-display { 
+    font-size: 3.5rem; background: #0a0f0a; color: #33ff77; 
+    border: 2px solid #1a3320; border-radius: 8px; padding: 15px 30px; 
+    margin-bottom: 40px; width: 350px; text-align: center; 
+    font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 15px rgba(51, 255, 119, 0.5); 
+    box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.05);
+}
+.keypad-grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 15px; margin-bottom: 40px; }
+.kp-btn { 
+    height: 80px; font-size: 2.2rem; background: #1a1a24; 
+    border-radius: 8px; border: 1px solid #333; color: #ddd; font-family: 'Share Tech Mono', monospace;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.05); 
+    transition: all 0.1s;
+}
+.kp-btn:hover { background: #2a2a3a; border-color: #555; transform: translateY(-2px); }
+.kp-btn:active { transform: translateY(2px); box-shadow: none; }
+.kp-clear { background: #3a1515; color: #ff6b6b; border-color: #522; font-size: 1.4rem; }
+.kp-clear:hover { background: #5a2020; }
+.kp-enter { background: #153a1d; color: #6bff84; border-color: #252; font-size: 1.4rem; }
+.kp-enter:hover { background: #205a2d; }
