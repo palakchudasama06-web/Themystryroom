@@ -1,0 +1,33 @@
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; font-family: 'Courier New', Courier, monospace; }
+body { background: #000; overflow: hidden; color: #fff; margin: 0; }
+#game-container { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; }
+.ui-layer { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(3px); }
+.hidden { display: none !important; }
+#crosshair { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; background: rgba(255,255,255,0.7); border-radius: 50%; transform: translate(-50%, -50%); z-index: 5; pointer-events: none; }
+
+h1 { font-size: 3rem; margin-bottom: 10px; color: #a3c2c2; text-shadow: 0 0 10px #a3c2c2; letter-spacing: 2px; text-align: center; }
+h2 { font-size: 2rem; margin-bottom: 20px; color: #e0e0e0; border-bottom: 1px solid #555; padding-bottom: 10px; }
+p { font-size: 1.2rem; margin-bottom: 30px; text-align: center; max-width: 600px; line-height: 1.5; color: #ccc; }
+
+button { padding: 15px 30px; font-size: 1.2rem; background: #222; color: #fff; border: 1px solid #555; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+button:hover { background: #444; border-color: #a3c2c2; box-shadow: 0 0 15px rgba(163, 194, 194, 0.5); }
+
+#hud { background: transparent; justify-content: space-between; align-items: flex-start; padding: 20px; pointer-events: none; }
+#level-display, #evidence-counter { font-size: 1.5rem; text-shadow: 1px 1px 2px #000; background: rgba(0,0,0,0.5); padding: 5px 15px; border: 1px solid #333; }
+#evidence-counter { position: absolute; top: 20px; right: 20px; }
+#interaction-prompt { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); font-size: 1.5rem; background: rgba(0,0,0,0.7); padding: 10px 20px; border: 1px solid #fff; }
+
+#inspection-panel, #scroll-panel { background: rgba(10, 15, 20, 0.95); }
+#inspect-content, #scroll-content { background: #fff; color: #111; padding: 30px; border-radius: 2px; width: 80%; max-width: 500px; min-height: 300px; font-family: 'Times New Roman', serif; box-shadow: inset 0 0 50px rgba(0,0,0,0.1); }
+#scroll-content { background: #f4e8c1; color: #3d2b1f; font-style: italic; border: 2px solid #a8946e; }
+
+.hint-section { margin-top: 20px; text-align: center; }
+#hint-text { color: #a3c2c2; font-size: 1rem; margin-top: 10px; }
+
+#keypad-panel { background: rgba(0,0,0,0.85); }
+#keypad-display { font-size: 3rem; background: #111; color: #0f0; border: 2px solid #333; padding: 10px 20px; margin-bottom: 20px; width: 320px; text-align: center; font-family: monospace; text-shadow: 0 0 10px #0f0; }
+.keypad-grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; margin-bottom: 30px; }
+.kp-btn { height: 80px; font-size: 2rem; background: #333; border-radius: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
+.kp-btn:hover { background: #555; }
+.kp-clear { background: #522; color: #f55; }
+.kp-enter { background: #252; color: #5f5; }

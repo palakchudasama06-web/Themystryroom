@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Abandoned Wing - 3D Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="crosshair"></div>
+    
+    <div id="main-menu" class="ui-layer">
+        <h1>THE ABANDONED WING</h1>
+        <p>A First-Person Investigation</p>
+        <button id="btn-start">ENTER HOSPITAL</button>
+        <p class="instructions">WASD to Move | MOUSE to Look | E to Interact</p>
+    </div>
+    
+    <div id="hud" class="ui-layer hidden">
+        <div id="level-display">Level 1: Reception</div>
+        <div id="evidence-counter">Evidence: 0/0</div>
+        <div id="interaction-prompt" class="hidden">Press E to Inspect</div>
+    </div>
+    
+    <div id="inspection-panel" class="ui-layer hidden">
+        <h2 id="inspect-title">Document</h2>
+        <div id="inspect-content">...</div>
+        <button id="btn-close-inspect">Close (E)</button>
+    </div>
+    
+    <div id="scroll-panel" class="ui-layer hidden">
+        <h2>Cryptic Note</h2>
+        <p id="scroll-content">...</p>
+        <div class="hint-section">
+            <button id="btn-hint">Need a Hint?</button>
+            <p id="hint-text" class="hidden"></p>
+        </div>
+        <button id="btn-close-scroll">Close (E)</button>
+    </div>
+    
+    <div id="keypad-panel" class="ui-layer hidden">
+        <div id="keypad-display">----</div>
+        <div class="keypad-grid">
+            <button class="kp-btn">1</button><button class="kp-btn">2</button><button class="kp-btn">3</button>
+            <button class="kp-btn">4</button><button class="kp-btn">5</button><button class="kp-btn">6</button>
+            <button class="kp-btn">7</button><button class="kp-btn">8</button><button class="kp-btn">9</button>
+            <button class="kp-btn kp-clear">CLR</button><button class="kp-btn">0</button><button class="kp-btn kp-enter">ENT</button>
+        </div>
+        <button id="btn-close-keypad">Step Away (E)</button>
+    </div>
+    
+    <div id="end-screen" class="ui-layer hidden">
+        <h1>MYSTERY SOLVED</h1>
+        <p>You have successfully navigated the abandoned wing.</p>
+        <button id="btn-restart">PLAY AGAIN</button>
+    </div>
+
+    <!-- Three.js (via CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+    
+    <!-- Game Logic -->
+    <script src="game.js"></script>
+</body>
+</html>
